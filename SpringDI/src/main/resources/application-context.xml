@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 자바 객체 선언 -->
+	<!-- scope="prototyppe" = 싱글톤 형식으로 된다 -->
+	<bean id="test" class="ex01.SpringTest" scope="prototyppe"/>
+
+	
+	<!-- id = 이름, class = 경로 -->
+	
+	<!-- 자바 문법과 같음 CHef chef = new chef() -->
+	<bean id="chef" class="ex02.Chef"/> 
+	
+	<!-- ref = 참조할 빈의 아이디 -->
+	<bean id="hotel" class="ex02.Hotel">
+		<!-- 객체 주입 -->
+		<constructor-arg ref="chef" />
+	</bean>
+	
+	<!-- 문자열 -->
+	<bean id="dev" class="ex03.DatabaseDev">
+		<property name="url" value="jdbc:mysql://localhost~~~"/>
+		<property name="uid" value="taeju"/>
+		<property name="upw" value="1234"/>
+	</bean>
+	
+	<!-- dev -->
+	<bean id="memberDAO" class="ex03.MemberDAO">
+		<property name="dataSource" ref="dev"/>
+	</bean>
+</beans>
